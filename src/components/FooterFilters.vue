@@ -1,19 +1,28 @@
 <template>
   <div class="filters" :class="theme === 'dark' ? 'footerDark' : 'footerLight'">
     <button
-      :class="{ marked: currentFilter === 'all' || currentFilter === '' }"
+      :class="[
+        { marked: currentFilter === 'all' || currentFilter === '' },
+        theme === 'dark' ? 'footerDark' : 'footerLight',
+      ]"
       @click="accionSetValueFilter('all')"
     >
       All
     </button>
     <button
-      :class="{ marked: currentFilter === 'active' }"
+      :class="[
+        { marked: currentFilter === 'active' },
+        theme === 'dark' ? 'footerDark' : 'footerLight',
+      ]"
       @click="accionSetValueFilter('active')"
     >
       Active
     </button>
     <button
-      :class="{ marked: currentFilter === 'completed' }"
+      :class="[
+        { marked: currentFilter === 'completed' },
+        theme === 'dark' ? 'footerDark' : 'footerLight',
+      ]"
       @click="accionSetValueFilter('completed')"
     >
       Completed
@@ -38,16 +47,19 @@ p,
 button {
   background-color: transparent;
   font-weight: 700;
-  color: rgb(202, 205, 232, 0.5);
+  /*  color: rgb(202, 205, 232, 0.5); */
 }
-.marked {
+.footerDark.marked {
+  color: hsl(220, 98%, 61%);
+}
+.footerLight.marked {
   color: hsl(220, 98%, 61%);
 }
 .footerDark {
-  background-color: var(--todo-bg);
-  color: var(--font-color);
+  color: rgb(202, 205, 232, 0.5);
   font-weight: 700;
 }
+
 .footerLight {
   background-color: hsl(0, 0%, 98%);
   color: hsl(235, 19%, 35%);

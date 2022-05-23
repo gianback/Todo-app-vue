@@ -5,26 +5,40 @@
 
       <FooterFilters />
 
-      <button @click="accionBorrarCompletado">Clear Completed</button>
+      <button
+        @click="accionBorrarCompletado"
+        :class="theme === 'dark' ? 'footerDark' : 'footerLight'"
+      >
+        Clear Completed
+      </button>
     </div>
     <div
       class="filters-movil"
       :class="theme === 'dark' ? 'footerDark' : 'footerLight'"
     >
       <button
-        :class="{ marked: currentFilter === 'all' || currentFilter === '' }"
+        :class="[
+          { marked: currentFilter === 'all' || currentFilter === '' },
+          theme === 'dark' ? 'footerDark' : 'footerLight',
+        ]"
         @click="accionSetValueFilter('all')"
       >
         All
       </button>
       <button
-        :class="{ marked: currentFilter === 'active' }"
+        :class="[
+          { marked: currentFilter === 'active' },
+          theme === 'dark' ? 'footerDark' : 'footerLight',
+        ]"
         @click="accionSetValueFilter('active')"
       >
         Active
       </button>
       <button
-        :class="{ marked: currentFilter === 'completed' }"
+        :class="[
+          { marked: currentFilter === 'completed' },
+          theme === 'dark' ? 'footerDark' : 'footerLight',
+        ]"
         @click="accionSetValueFilter('completed')"
       >
         Completed
@@ -64,15 +78,21 @@ export default {
   justify-content: space-between;
   align-items: center;
 }
-.marked {
+.footerDark.marked {
   color: hsl(220, 98%, 61%);
+}
+.footerLight.marked {
+  color: hsl(220, 98%, 61%);
+}
+.footerDark {
+  color: rgb(202, 205, 232, 0.5);
+  font-weight: 700;
 }
 
 p,
 button {
   background-color: transparent;
   font-weight: 700;
-  color: rgb(202, 205, 232, 0.5);
 }
 .filters-movil {
   background-color: var(--todo-bg);
@@ -86,12 +106,12 @@ button {
 }
 .footerDark {
   background-color: var(--todo-bg);
-  color: var(--font-color);
+  color: rgb(202, 205, 232, 0.5);
   font-weight: 700;
 }
 .footerLight {
+  color: #9394a5;
   background-color: hsl(0, 0%, 98%);
-  color: hsl(236, 9%, 61%);
   font-weight: 700;
 }
 @media (max-width: 767px) {

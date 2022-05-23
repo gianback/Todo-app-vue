@@ -14,10 +14,10 @@ export default {
     ...mapState(["theme"]),
     setThemeResponsive() {
       return {
-        headerDarkDesktop: this.theme === "dark" && this.width >= 768,
-        headerLightDesktop: this.theme === "light" && this.width >= 768,
-        headerDarkMobile: this.theme === "dark" && this.width < 768,
-        headerLightMobile: this.theme === "light" && this.width < 768,
+        headerDarkDesktop: this.theme === "dark" && window.innerWidth >= 768,
+        headerLightDesktop: this.theme === "light" && window.innerWidth >= 768,
+        headerDarkMobile: this.theme === "dark" && window.innerWidth < 768,
+        headerLightMobile: this.theme === "light" && window.innerWidth < 768,
       };
     },
   },
@@ -25,6 +25,10 @@ export default {
     this.width = window.innerWidth;
   },
 };
+/* window.addEventListener("resize", () => {
+  this.width = window.innerWidth;
+  console.log(width);
+}); */
 </script>
 
 <style>
